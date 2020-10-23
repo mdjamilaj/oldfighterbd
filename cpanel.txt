@@ -1,0 +1,21 @@
+Customer ID:   
+Pass -    Ad009257
+Jual Ahmed
+ 
+
+3100 - zip code
+ 
+
+jual - First
+Ahmed - Last 
+
+ip = 198.251.65.33
+user=root 
+pass=o9eHeuN@2?
+
+database:
+uername= newuser
+password= passwordAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA12222222222222222222222222DSFSDFDF*&^%$$*^*^
+database=nshop
+
+ssh://root@198.251.69.22/var/repo/site.git
