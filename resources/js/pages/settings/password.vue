@@ -12,7 +12,7 @@
 					<input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="New Password" type="password" name="password">
 					<has-error class="text-pink-700" :form="form" field="password" />
 				</div>
-			</div>
+			</div> 
 
 			<!-- Password Confirmation -->
 			<div class="form-group row py-5">
