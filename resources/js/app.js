@@ -3,13 +3,14 @@ import store from '~/store'
 import router from '~/router'
 import i18n from '~/plugins/i18n'
 import App from '~/components/App'
-
 import VueFbCustomerChat from 'vue-fb-customer-chat'
 
+
+
 Vue.use(VueFbCustomerChat, {
-  page_id: 101743478403033, //  change 'null' to your Facebook Page ID,
-  theme_color: '#333333', // theme color in HEX
-  locale: 'en_US', // default 'en_US'
+  page_id: 109903737574486,
+  theme_color: '#333333', 
+  locale: 'en_US', 
 })
 
 
