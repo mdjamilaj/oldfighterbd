@@ -9,7 +9,7 @@ import VueFbCustomerChat from 'vue-fb-customer-chat'
 
 Vue.use(VueFbCustomerChat, {
   page_id: 109903737574486,
-  theme_color: '#333333', 
+  theme_color: '#44bec7', 
   locale: 'en_US', 
 })
 
