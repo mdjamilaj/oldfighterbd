@@ -127,7 +127,7 @@
                             class="text-xl font-normal ml-1 font-black"
                             style="margin-top: -4px;"
                         >
-                            &#2547;
+                           টাকা
                         </p>
                     </div>
                     </td>
@@ -141,7 +141,6 @@
                     <td class="border border-gray-400 px-4 py-2">{{ formatCompat(withdraw.created_at) }}</td>
                 </tr>
                 <tr>
-                    <!-- <td class="border border-gray-400 px-4 py-2 text-right font-bold" colspan="4">Total</td> -->
                     <td class="border border-gray-400 px-4 py-2 text-center font-bold">
                     
                     <div
@@ -151,7 +150,7 @@
                             class="text-xl font-normal ml-1 font-black"
                             style="margin-top: -4px;"
                         >
-                            &#2547;
+                            টাকা
                         </p>
                     </div>
                   </td>

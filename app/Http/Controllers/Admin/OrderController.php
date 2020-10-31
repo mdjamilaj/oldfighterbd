@@ -56,12 +56,12 @@ class OrderController extends Controller
         $order = Order::find($id);
         $sale_price = $order->sale_price;
         $order->update(['status' => $status]);
-        if($status=='complete'){
-            $user = User::find($order->user_id);
-            if($user->phone){
-                $this->sendmessage($user->phone,$order->id);
-            }
-        }
+        // if($status=='complete'){
+        //     $user = User::find($order->user_id);
+        //     if($user->phone){
+        //         $this->sendmessage($user->phone,$order->id);
+        //     }
+        // }
         return $status;
     }
 
@@ -118,26 +118,26 @@ class OrderController extends Controller
     }
 
 
-    public function sendmessage($number,$orderid)
-    {
-          $number=substr($number,1);
-          $url = "http://msms.putulhost.com/smsapi";
-          $data = [
-            "api_key" => "C20045365f076fa8c44be2.89586259",
-            "type" => "text",
-            "contacts" => $number,
-            "senderid" => "8809612446000",
-            "msg" => "Your Order Id (". $orderid .") Has Been Completed. Happy Top Up WIth NSHOP.",
-          ];
-          $ch = curl_init();
-          curl_setopt($ch, CURLOPT_URL, $url);
-          curl_setopt($ch, CURLOPT_POST, 1);
-          curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-          $response = curl_exec($ch);
-          curl_close($ch);
-          echo $response;
-          return $response;
-    }
+    // public function sendmessage($number,$orderid)
+    // {
+    //       $number=substr($number,1);
+    //       $url = "http://msms.putulhost.com/smsapi";
+    //       $data = [
+    //         "api_key" => "C20045365f076fa8c44be2.89586259",
+    //         "type" => "text",
+    //         "contacts" => $number,
+    //         "senderid" => "8809612446000",
+    //         "msg" => "Your Order Id (". $orderid .") Has Been Completed. Happy Top Up WIth NSHOP.",
+    //       ];
+    //       $ch = curl_init();
+    //       curl_setopt($ch, CURLOPT_URL, $url);
+    //       curl_setopt($ch, CURLOPT_POST, 1);
+    //       curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    //       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    //       $response = curl_exec($ch);
+    //       curl_close($ch);
+    //       echo $response;
+    //       return $response;
+    // }
 }

@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('buy_price');
             $table->integer('sale_price');
             $table->integer('package_id');
-            $table->integer('refoundamount');
+            $table->integer('refoundamount')->nullable();
             $table->enum('status', array('pandding', 'complete', 'cancel'));
             $table->integer('user_id');
             $table->string('type');
@@ -29,6 +29,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment')->nullable();
             $table->string('email');
             $table->string('password');
+            $table->string('security_code')->nullable();
             $table->timestamps();
         });
     }

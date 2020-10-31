@@ -96,6 +96,7 @@
 							<th  style="padding: 15px;margin:10px;" scope="col">O.ID</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">U.ID</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">Type</th>
+							<th  style="padding: 15px;margin:10px;" scope="col">Code</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">ID Code / ID Email</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">PAssword</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">R.ID</th>
@@ -145,6 +146,7 @@
 							<td style="padding: 15px;margin:10px;">{{$data->id}}</td>
 							<td style="padding: 15px;margin:10px;">{{$data->user_id}}</td>
 							<td style="padding: 15px;margin:10px;">{{$data->type}}</td>
+							<td style="padding: 15px;margin:10px;">{{$data->security_code}}</td>
 							<td style="padding: 15px;margin:10px;">
 								<span>
 									<button class="btn btn-sm btn-secondary" onclick="myFunction( {{ $data->id }} )">Copy</button>

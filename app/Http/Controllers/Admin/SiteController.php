@@ -72,8 +72,8 @@ class SiteController extends Controller
         $user = User::find($user_id);
         $wallet = $user->wallet;
         $data1 = [];
-        if($wallet >= $packages[0]->sale_price){
-            $update_wallet = $wallet - $packages[0]->sale_price;
+        if($wallet >= $request->sale_price){
+            $update_wallet = $wallet - $request->sale_price;
             $user->update(['wallet' => $update_wallet]);
 
             $data1['success'] = 1;
@@ -82,15 +82,17 @@ class SiteController extends Controller
             $email = $request->input('email');
             $password = $request->input('password');
 
+
             $order = new Order;
             $order->name = $packages[0]->name;
             $order->buy_price = $packages[0]->buy_price;
-            $order->sale_price = $packages[0]->sale_price;
+            $order->sale_price = $request->sale_price;
             $order->package_id = $id;
             $order->user_id = $user_id;
             $order->type = $type;
             $order->email = $email;
             $order->password = $password;
+            $order->security_code = $request->security_code;
             $order->status = 'pandding';
                 
             $order->save();

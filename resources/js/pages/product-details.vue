@@ -88,13 +88,13 @@
 								>
 									<label
 										class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-										for="grid-city"
+										for="grid-Facebook"
 									>
 										Facebook Number
 									</label>
 									<input
 										class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-										id="grid-city"
+										id="grid-Facebook"
 										type="text"
 										placeholder="Enter Number"
 										v-model="idCodeIdPasswordForm.email"
@@ -103,13 +103,13 @@
 								<div v-else class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
 									<label
 										class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-										for="grid-city"
+										for="grid-email"
 									>
 										Your Gmail
 									</label>
 									<input
 										class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-										id="grid-city"
+										id="grid-email"
 										type="email"
 										placeholder="Enter Email"
 										v-model="idCodeIdPasswordForm.email"
@@ -130,6 +130,51 @@
 										placeholder="Enter Password"
 										v-model="idCodeIdPasswordForm.password"
 									/>
+								</div>
+							</div>
+							<div class="flex flex-wrap -mx-3 mb-2">
+								<div
+									v-if="showAcountType === 0"
+									class="w-full md:w-1/3 px-3 mb-6 md:mb-0"
+								>
+									<label
+										class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+										for="grid-security_code"
+									>
+										Account Security Code
+									</label>
+									<input
+										class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+										id="grid-security_code"
+										type="text"
+										placeholder="Enter Security Code"
+										v-model="idCodeIdPasswordForm.security_code"
+									/>
+									<p v-if="idCodeIdPasswordForm.security_code === ''" class="text-red-600">Security Code is required</p>
+
+									<a class="text-green-400 hover:text-blue-500" href="https://www.youtube.com/watch?v=dHRVPg84UhU" target="_blank">কীভাবে কোড পাবেন ?</a>
+								</div>
+
+
+								<div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+									<label
+										class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+										for="grid-coupon_code"
+									>
+										Coupon Code
+									</label>
+									<input
+										class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+										id="grid-coupon_code"
+										type="text"
+										placeholder="Coupon Code(যদি থাকে)"
+										v-model="coupon_code"
+										@input="checkCoupon();"
+									/>
+									<p v-if="coupon_code === ''" class="text-red-600 ml-3">Coupon Code is required</p>
+									<p v-else-if="coupon_code !== 'fighter869'" class="text-red-600 ml-3">Coupon Code is invalid</p>
+									<p v-else class="text-green-600 ml-3">Valid Code</p>
+									
 								</div>
 							</div>
 						</form>
@@ -220,7 +265,7 @@
 					  		<div class="m-1">
 					  			<label :for="game.id" class="mb-0 w-40 list-group-item py-3 d-block"  style="font-size: 11px;position: relative;    overflow: hidden;">
 					  				<span class="absolute left-0" :class="selectedPackageData.id==game.id ? 'element-check-label' : ''" style="color: #fff;"> L </span>
-						  			<input class="absolute" required style="visibility: hidden;" :id="game.id" @change="onChangePackage(game)" v-model="checkedData" name="send" :value="game.sale_price" type="radio">
+						  			<input class="absolute" required style="visibility: hidden;" :id="game.id" @change="onChangePackage(game); checkCoupon();" v-model="checkedData" name="send" :value="game.sale_price" type="radio">
 									<span class="text-xs">{{ game.name }}</span>
 						  		</label>
 						  	</div>
@@ -260,60 +305,6 @@
 										</div>
 									</div>
 									<div v-else>
-										<!-- <div 
-											v-if="user!=null"
-											class="flex bg-grey-300 border-2 justify-center"
-										>
-											<label :for="'p100000'" class="mb-0 w-40 list-group-item pt-3 d-block w-full"  style="font-size: 11px;position: relative;overflow: hidden;">
-												<div class="w-full">
-													<span class="absolute left-0" :class="selectedpaymentmethod.id==100000 ? 'element-check-label' : ''" style="color: #fff;"> L </span>
-													<input class="absolute" required style="visibility: hidden;" :id="'p100000'" @change="onChangePayment({id:100000,name:'nshopwallet'})" name="sends" :value="{id:100000,name:'nshopwallet'}" type="radio">
-													<div class="flex justify-between cursor-pointer py-1 px-2">
-														<img
-															src="/logo.png"
-															style="width: 100px;"
-															class="mr-2 p-1"
-														/>
-														<h2 class="text-xs font-bold text-gray-900  p-1">
-															<p>Price</p>
-															<p>BDT {{ checkedData }}</p>
-														</h2>
-													</div>
-													<div class="border-t-2 bg-gray-300">
-														<h2 class="text-sm text-gray-900 font-normal pl-2">
-															Pay With BDT
-														</h2>
-													</div>
-												</div>
-											</label>
-										</div> -->
-										<!-- <div 
-											v-if="user!=null"
-											class="flex bg-grey-300 border-2 justify-center"
-										>
-											<label :for="'p0'" class="mb-0 w-40 list-group-item pt-3 d-block w-full"  style="font-size: 11px;position: relative;overflow: hidden;">
-												<div class="w-full">
-													<span class="absolute left-0" :class="selectedpaymentmethod.id==0 ? 'element-check-label' : ''" style="color: #fff;"> L </span>
-													<input class="absolute" required style="visibility: hidden;" :id="'p0'" @change="onChangePayment({id:0,name:'nshopwallet'})" name="sends" :value="{id:0,name:'nshopwallet'}" type="radio">
-													<div class="flex justify-between cursor-pointer py-1 px-2">
-														<img
-															src="/logo.png"
-															style="width: 100px;"
-															class="mr-2 p-1"
-														/>
-														<h2 class="text-xs font-bold text-gray-900  p-1">
-															<p>Price</p>
-															<p>BDT {{ checkedData }}</p>
-														</h2>
-													</div>
-													<div class="border-t-2 bg-gray-300">
-														<h2 class="text-sm text-gray-900 font-normal pl-2">
-															Pay With Nshop wallet
-														</h2>
-													</div>
-												</div>
-											</label>
-										</div>										 -->
 										<div class="flex bg-grey-300 border-2 justify-center mt-3" v-for="m in paymentMethods" :key="m.id">
 											<label :for="'p'+m.id" class="mb-0 w-40 list-group-item pt-3 d-block w-full"  style="font-size: 11px;position: relative;    overflow: hidden;">
 												<div class="w-full">
@@ -327,7 +318,8 @@
 														/>
 														<h2 class="text-xs font-bold text-gray-900  p-1">
 															<p>Price</p>
-															<p> {{ abc(m.discount) }} {{  m.currency }}</p>
+															<!-- abc(m.discount) -->
+															<p> {{ sale_amount }} {{  m.currency }}</p>
 														</h2>
 													</div>
 													<div class="border-t-2 bg-gray-300">
@@ -338,8 +330,12 @@
 												</div>
 										  	</label>
 										</div>
+										<div class="mt-3 text-red-600" v-if="coupon_discount != 0">
+											Coupon Discount = {{ coupon_discount }} টাকা
+										</div>
 										<div class="mt-5 text-right">
-											<button class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-1 px-2 mt-2 rounded" v-if="selectedPackageData.length!=0 && selectedpaymentmethod.length!=0 && idCodeIdPasswordForm.email" v-on:click="buynow(user.id)">Buy Now</button>
+											<router-link :to="{ name: 'add-wallet' }" class="bg-pink-500 hover:bg-pink-700 text-white py-1 font-bold px-2 mt-2 rounded mt-2" v-if="sale_amount > user.wallet">Add Money</router-link>
+											<button class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-1 px-2 mt-2 rounded" v-else-if="selectedPackageData.length!=0 && selectedpaymentmethod.length!=0 && idCodeIdPasswordForm.email" v-on:click="buynow(user.id)">Buy Now</button>
 											<button class="bg-pink-500 hover:bg-pink-700 text-white py-1 font-bold px-2 mt-2 rounded opacity-50 cursor-not-allowed mt-2" v-else disabled>Buy Now</button>
 										</div>
 									</div>
@@ -522,7 +518,7 @@
 										type="number"
 									/>
 								</div>
-								<button v-if="user!=null" v-on:click="orderWithTransactionId(user.id)" class="appearance-none block w-full bg-pink-500 hover:bg-pink-700 text-white border border-gray-200 rounded py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mt-2">Confirm Order</button>
+								<button v-if="user!=null" v-on:click="orderWithWallet(user.id)" class="appearance-none block w-full bg-pink-500 hover:bg-pink-700 text-white border border-gray-200 rounded py-3 leading-tight focus:outline-none focus:pink-800 focus:border-gray-500 mt-2">Confirm Order</button>
 							</div>
 						</div>
 					</div>
@@ -544,6 +540,9 @@ export default {
 	},
 	data() {
 		return {
+			coupon_code:'',
+			sale_amount: 0,
+			coupon_discount: 0,
 			ispandding: false,
 			number:'',
 			transaction_id: '',
@@ -571,6 +570,7 @@ export default {
 				type: "IDCODE",
 				email: "",
 				password: "",
+				security_code: '',
 			})
 		};
 	},
@@ -668,114 +668,220 @@ export default {
 				});
 			}
 		},
-		orderWithTransactionId(){
-
-			
-			if(this.showElement == 0){
-				var password = "ID Code";
-				var type = "ID Code";
-				if(this.gamename!=null){
-					password=this.gamename
+		checkCoupon()
+		{
+			if(this.selectedPackageData.length != ''){
+				if(this.coupon_code == 'fighter869'){
+					var coupon_amount = (this.selectedPackageData.sale_price*3) / 100 ;
+					this.sale_amount = (this.selectedPackageData.sale_price - parseInt(coupon_amount));
+					this.coupon_discount = parseInt(coupon_amount);
+				}else{
+					this.sale_amount = this.selectedPackageData.sale_price;
+					this.coupon_discount = 0;
 				}
-			}else{
-				var password = this.idCodeIdPasswordForm.password;
-				var type = this.idCodeIdPasswordForm.type;
 			}
-
-
-			var email = this.idCodeIdPasswordForm.email;
-			if(this.selectedpaymentmethod.id == 100000)
-			{
-				let id = this.selectedPackageData.id;
-				var params = {
-					type: type,
-					password: password,
-					email: email,
-					number: this.number,
-					method: this.selectedpaymentmethod.id,
-					transaction_id: this.transaction_id
-				};
-				axios.post(`/api/product-order-transaction_id/${id}/${this.user.id}`, params).then(response => {
-					console.log(response.data)
-					document.getElementById("spay").innerHTML=response.data;
-					// document.getElementById("frm_submit").setAttribute("target", "_blank");
-					document.getElementById('frm_submit').submit()
-				});
-			}
-			else if(this.selectedpaymentmethod.id==0 && this.checkedData > this.user.wallet ){
-				console.log("Balance error ");
+		},
+		orderWithWallet(user_id){
+			if(this.user.wallet >= this.sale_amount){
 				Swal.fire({
-					type: "error",
-					title: "আপনার Balance খুব কম অনুগ্রহ করে প্রথমে Add Money করুন এবং তার পর অর্ডার করুন -ধন্যবাদ ",
-					text: "আপনার Balance খুব কম অনুগ্রহ করে প্রথমে Add Money করুন এবং তার পর অর্ডার করুন -ধন্যবাদ ",
+					type: "question",
+					title: "Are You Sure ?",
+					html: '<b style="color: green;">Confirm Your Order With Wallet</b>',
 					reverseButtons: true,
-					confirmButtonText: "ok"
-				});
-			}
-			else if(email == '')
-			{
-				Swal.fire({
-					type: "error",
-					title: "First Select ID Code/ID Password",
-					text: "please First Select ID Code/ID Password All Field",
-					reverseButtons: true,
-					confirmButtonText: "ok"
+					confirmButtonText: "Yes Confirm Order",
+					showCancelButton: true,
 				}).then(result => {
-					this.transactionmodal = false;
-				});
-			}
-			
-			// else if(this.selectedpaymentmethod.id!=0 && (this.number == '' || this.transaction_id == ''))
-			// {
-			// 	Swal.fire({
-			// 		type: "error",
-			// 		title: "Transaction Require error",
-			// 		text: "TransactionId/Transaction Number Not Required",
-			// 		reverseButtons: true,
-			// 		confirmButtonText: "ok"
-			// 	}).then(result => {
-			// 		this.transactionmodal = true;
-			// 	});
-			// }
-			
-			
-			else{
+					if (result.value) {
 
+					if(this.showAcountType == 1){
+						var security_code = "Facebook";
+					}else{
+						var security_code = this.idCodeIdPasswordForm.security_code;
+					}
 
-
-
-				let id = this.selectedPackageData.id;
-				var params = {
-					type: type,
-					password: password,
-					email: email,
-					number: this.number,
-					method: this.selectedpaymentmethod.id,
-					transaction_id: this.transaction_id
-				};
-				axios.post(`/api/product-order-transaction_id/${id}/${this.user.id}`, params).then(response => {
-					if (response.data.success == '1') {
+					console.log(this.showElement);
+					if(this.showElement == 0){
+						var password = "ID Code";
+						var type = "ID Code";
+					}else{
+						var password = this.idCodeIdPasswordForm.password;
+						var type = this.idCodeIdPasswordForm.type;
+					}
+					var email = this.idCodeIdPasswordForm.email;
+					console.log(type, email, password);
+					if(email == '' || password == '')
+					{
 						Swal.fire({
-							type: "success",
-							title: "Order Completed",
-							html: "Your Order Has Been Successfully Completed",
+							type: "error",
+							title: "First Select ID Code/ID Password",
+							text: "please First Select ID Code/ID Password All Field",
 							reverseButtons: true,
 							confirmButtonText: "ok"
 						}).then(result => {
-							location.reload();
+							this.modal = false;
 						});
-					} else {
+					}else if(security_code == ''){
 						Swal.fire({
 							type: "error",
-							title: "Order Failed",
-							text: response.data.message,
+							title: "Security Code is required",
 							reverseButtons: true,
 							confirmButtonText: "ok"
+						}).then(result => {
+							this.modal = false;
+						});
+					}else{
+					let id = this.selectedPackageData.id;
+					var params = {
+						type: type,
+						password: password,
+						email: email,
+						security_code: security_code,
+						sale_price: this.sale_amount
+					};
+					axios.post(`/api/product-order-walllet/${id}/${user_id}`, params).then(response => {
+							if (response.data.success == '1') {
+								Swal.fire({
+									type: "success",
+									title: "Order Completed",
+									html: "Your Order Has Been Successfully Completed <br><p style='color: green;'>Now Your Wallet  "+ response.data.wallet +" BDT</p>",
+									reverseButtons: true,
+									confirmButtonText: "ok"
+								}).then(result => {
+									location.reload();
+								});
+							} else {
+								Swal.fire({
+									type: "error",
+									title: "Order Failed",
+									text: "Your Order Not Completed",
+									reverseButtons: true,
+									confirmButtonText: "ok"
+								}).then(result => {
+									location.reload();
+								});
+							}
 						});
 					}
+					}
 				});
+			}else{
+				Swal.fire({
+					type: "error",
+					title: "Sorry",
+					html: "<b style='color: red;'>Your Fighter wallet is less than your shop wallet</b><br><p color='green'>Please, try another way</p>",
+					reverseButtons: true,
+					confirmButtonText: "ok"
+				})
 			}
 		},
+		// orderWithTransactionId(){
+
+			
+		// 	if(this.showElement == 0){
+		// 		var password = "ID Code";
+		// 		var type = "ID Code";
+		// 		if(this.gamename!=null){
+		// 			password=this.gamename
+		// 		}
+		// 	}else{
+		// 		var password = this.idCodeIdPasswordForm.password;
+		// 		var type = this.idCodeIdPasswordForm.type;
+		// 	}
+
+
+		// 	var email = this.idCodeIdPasswordForm.email;
+		// 	if(this.selectedpaymentmethod.id == 100000)
+		// 	{
+		// 		let id = this.selectedPackageData.id;
+		// 		var params = {
+		// 			type: type,
+		// 			password: password,
+		// 			email: email,
+		// 			number: this.number,
+		// 			method: this.selectedpaymentmethod.id,
+		// 			transaction_id: this.transaction_id
+		// 		};
+		// 		axios.post(`/api/product-order-transaction_id/${id}/${this.user.id}`, params).then(response => {
+		// 			console.log(response.data)
+		// 			document.getElementById("spay").innerHTML=response.data;
+		// 			// document.getElementById("frm_submit").setAttribute("target", "_blank");
+		// 			document.getElementById('frm_submit').submit()
+		// 		});
+		// 	}
+		// 	else if(this.selectedpaymentmethod.id==0 && this.checkedData > this.user.wallet ){
+		// 		console.log("Balance error ");
+		// 		Swal.fire({
+		// 			type: "error",
+		// 			title: "আপনার Balance খুব কম অনুগ্রহ করে প্রথমে Add Money করুন এবং তার পর অর্ডার করুন -ধন্যবাদ ",
+		// 			text: "আপনার Balance খুব কম অনুগ্রহ করে প্রথমে Add Money করুন এবং তার পর অর্ডার করুন -ধন্যবাদ ",
+		// 			reverseButtons: true,
+		// 			confirmButtonText: "ok"
+		// 		});
+		// 	}
+		// 	else if(email == '')
+		// 	{
+		// 		Swal.fire({
+		// 			type: "error",
+		// 			title: "First Select ID Code/ID Password",
+		// 			text: "please First Select ID Code/ID Password All Field",
+		// 			reverseButtons: true,
+		// 			confirmButtonText: "ok"
+		// 		}).then(result => {
+		// 			this.transactionmodal = false;
+		// 		});
+		// 	}
+			
+		// 	// else if(this.selectedpaymentmethod.id!=0 && (this.number == '' || this.transaction_id == ''))
+		// 	// {
+		// 	// 	Swal.fire({
+		// 	// 		type: "error",
+		// 	// 		title: "Transaction Require error",
+		// 	// 		text: "TransactionId/Transaction Number Not Required",
+		// 	// 		reverseButtons: true,
+		// 	// 		confirmButtonText: "ok"
+		// 	// 	}).then(result => {
+		// 	// 		this.transactionmodal = true;
+		// 	// 	});
+		// 	// }
+			
+			
+		// 	else{
+
+
+
+
+		// 		let id = this.selectedPackageData.id;
+		// 		var params = {
+		// 			type: type,
+		// 			password: password,
+		// 			email: email,
+		// 			number: this.number,
+		// 			method: this.selectedpaymentmethod.id,
+		// 			transaction_id: this.transaction_id
+		// 		};
+		// 		axios.post(`/api/product-order-transaction_id/${id}/${this.user.id}`, params).then(response => {
+		// 			if (response.data.success == '1') {
+		// 				Swal.fire({
+		// 					type: "success",
+		// 					title: "Order Completed",
+		// 					html: "Your Order Has Been Successfully Completed",
+		// 					reverseButtons: true,
+		// 					confirmButtonText: "ok"
+		// 				}).then(result => {
+		// 					location.reload();
+		// 				});
+		// 			} else {
+		// 				Swal.fire({
+		// 					type: "error",
+		// 					title: "Order Failed",
+		// 					text: response.data.message,
+		// 					reverseButtons: true,
+		// 					confirmButtonText: "ok"
+		// 				});
+		// 			}
+		// 		});
+		// 	}
+		// },
         loadPaymentMethod() {
 			axios.get("/api/paymentMethods").then(response => {
 				this.paymentMethods = response.data;
