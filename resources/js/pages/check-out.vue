@@ -354,7 +354,7 @@ export default {
           Swal.fire({
             type: "error",
             title: "Sorry",
-            html: "<b style='color: red;'>Your NSHOPTOPUP wallet is less than your shop wallet</b><br><p color='green'>Please, try another way</p>",
+            html: "<b style='color: red;'>Your fighter wallet is less than your shop wallet</b><br><p color='green'>Please, try another way</p>",
             reverseButtons: true,
             confirmButtonText: "ok"
           })
