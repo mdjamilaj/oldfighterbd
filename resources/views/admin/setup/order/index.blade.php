@@ -162,11 +162,10 @@
 								@elseif($data->payment_method == 2) {{ 'Nogod' }}
 								@elseif($data->payment_method == 3) {{ 'Paytm' }}
 								@elseif($data->payment_method == 3) {{ 'Roket' }}
-								@else {{ 'NSHOP' }}
 								@endif
 							</td>
 							<td style="padding: 15px;margin:10px;">{{$data->name}}</td>
-							<td style="padding: 15px;margin:10px;"><span>@if($data->paymentm){{ $data->paymentm->currency }}@endif</span> {{ $data->sale_price }}</td>
+							<td style="padding: 15px;margin:10px;">{{ $data->sale_price }} টাকা </td>
 							<td style="padding: 15px;margin:10px;">
 								<input type="number" id="{{ $data->id.'input' }}" placeholder="Enter Amount" value="{{ $data->refoundamount }}" style="width: 70px">
 								<button class="btn btn-sm btn-success"  onclick="walletUpdate({{ $data->id }},{{ $data->id }}+'input' )">Update</button>
