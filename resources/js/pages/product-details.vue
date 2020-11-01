@@ -736,7 +736,12 @@ export default {
 						password: password,
 						email: email,
 						security_code: security_code,
-						sale_price: this.sale_amount
+						sale_price: this.sale_amount,
+						transaction_id:this.transaction_id,
+						paymentMethod:this.paymentMethod,
+						number:this.number,
+
+
 					};
 					axios.post(`/api/product-order-walllet/${id}/${user_id}`, params).then(response => {
 							if (response.data.success == '1') {

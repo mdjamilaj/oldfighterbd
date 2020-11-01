@@ -321,7 +321,7 @@ export default {
 			Swal.fire({
 				type: "question",
 				title: "Are You Sure ?",
-				html: '<b style="color: green;">Confirm Your Order With NSHOPTOPUP Wallet</b>',
+				html: '<b style="color: green;">Confirm Your Order With Fighter Wallet</b>',
 				reverseButtons: true,
 				confirmButtonText: "Yes Confirm Order",
 				showCancelButton: true,
@@ -354,7 +354,7 @@ export default {
           Swal.fire({
             type: "error",
             title: "Sorry",
-            html: "<b style='color: red;'>Your fighter wallet is less than your shop wallet</b><br><p color='green'>Please, try another way</p>",
+            html: "<b style='color: red;'>Your Fighter wallet is less than your shop wallet</b><br><p color='green'>Please, try another way</p>",
             reverseButtons: true,
             confirmButtonText: "ok"
           })
