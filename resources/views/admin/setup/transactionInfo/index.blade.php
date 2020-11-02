@@ -21,8 +21,8 @@
 						</div>
 						<div class="col-lg-3 col-md-6 col-sm-12">
 							<div class="form-group">
-								<label for="transaction_id">Transaction ID</label>
-								<input value="{{ old('transaction_id') }}"  type="text" name="transaction_id" id="name" class="form-control" placeholder="Enter Order ID">
+								<label for="transaction_id">Payment Number</label>
+								<input value="{{ old('permentnumber') }}"  type="text" name="permentnumber" id="name" class="form-control" placeholder="Enter prement number">
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-6 col-sm-12">
