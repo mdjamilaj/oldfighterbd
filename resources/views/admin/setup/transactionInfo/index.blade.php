@@ -73,6 +73,13 @@
 					<div class="col">
 						<h3 class="mb-0">Transaction List</h3>
 					</div>
+					<div class="col text-right">
+						<form action="{{ route('all_pandding_cancel') }}" method="post">
+							@csrf
+							<input style="margin-left: 10px;" type="submit" id="deletebtn"
+								class="btn btn-danger btn-sm" value="All Cancel">
+						</form>
+					</div>
 				</div>
 			</div>
 			<?php if(empty($datas)){  ?>

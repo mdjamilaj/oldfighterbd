@@ -91,7 +91,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     Route::get('users', "Auth\UserController@getUser")->name('users.index');
 
-
+    Route::post('all_pandding_cancel', "Admin\TransactionInfoController@allCancel")->name('all_pandding_cancel');
 });
 
     Route::get('paymetsuccess','Admin\SiteController@paymetsuccess')->name('paymetsuccess');

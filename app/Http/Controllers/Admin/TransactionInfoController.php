@@ -40,6 +40,16 @@ class TransactionInfoController extends Controller
         return $status;
     }
 
+
+    public function allCancel()
+    {
+        $all_cancel = WalletInfo::where('status', 'pandding');
+        $all_cancel->update(['status' => 'cancel']);
+
+        return back()
+            ->with('success','All Cancel Successfully.');
+    }
+
     public function getTransaction($id)
     {
         $transactionInfo = WalletInfo::orderBy('id', 'DESC')->where('user_id', $id)->get();
