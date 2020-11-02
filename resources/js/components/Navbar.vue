@@ -16,7 +16,7 @@
 		    <div class="flex flex-row items-center justify-between">
 
 		      	<router-link :to="'/'" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
-					<img src="/img/logo1.png" class="-w-40 h-16">
+					<img src="/img/logo2.png" class="-w-40 h-16">
 				</router-link>
 		      	<button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open1 = !open1">
 			        <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">

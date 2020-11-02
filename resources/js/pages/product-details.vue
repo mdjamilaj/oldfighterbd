@@ -672,7 +672,7 @@ export default {
 		{
 			if(this.selectedPackageData.length != ''){
 				if(this.coupon_code == 'fighter869'){
-					var coupon_amount = (this.selectedPackageData.sale_price*3) / 100 ;
+					var coupon_amount = (this.selectedPackageData.sale_price*1.5) / 100 ;
 					this.sale_amount = (this.selectedPackageData.sale_price - parseInt(coupon_amount));
 					this.coupon_discount = parseInt(coupon_amount);
 				}else{
