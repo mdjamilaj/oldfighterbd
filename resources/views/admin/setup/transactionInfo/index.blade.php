@@ -93,11 +93,12 @@
 					<thead class="thead-light">
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Transaction ID</th>
+							
 							<th scope="col">User ID</th>
 							<th scope="col">Payment Method</th>
 							<th scope="col">Payment Number</th>
 							<th scope="col">Amount</th>
+							<th scope="col">Time</th>
 							<th scope="col">Action</th>
 						</tr>
 					</thead>
@@ -105,7 +106,6 @@
 						@foreach($datas as $key => $data)
 						<tr>
 							<td scope="row">{{ $key }}</td>
-							<td style="">{{$data->transactionid}}</td>
 							<td style="">{{$data->user_id}}</td>
 							<td style="">
 								@if($data->paymentMethod == 1){{ 'bKash' }}
@@ -115,6 +115,7 @@
 							</td>
 							<td style="">{{$data->paymentNumber}}</td>
 							<td style="">{{$data->amount}}</td>
+							<td style=""><?php echo date('dM, Y h:m:s A', strtotime( $data->created_at)); ?></td>
 							<td>
 								@if ($data->status == 'cancel' || $data->status == 'complete')
 								<select disabled name="status" id="status{{$data->id}}"

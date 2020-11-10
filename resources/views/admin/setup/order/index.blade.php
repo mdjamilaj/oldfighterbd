@@ -104,6 +104,7 @@
 							<th  style="padding: 15px;margin:10px;" scope="col">Name</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">SP</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">Amount</th>
+							<th  style="padding: 15px;margin:10px;" scope="col">Time</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">Action</th>
 						</tr>
 					</thead>
@@ -176,6 +177,7 @@
 								<button class="btn btn-sm btn-success"  onclick="walletGameName({{ $data->id }},{{ $data->id }}+'input1' )">Update</button>
 							</td>
 							@endif
+							<td style=""><?php echo date('dM, Y h:m:s A', strtotime( $data->created_at)); ?></td>
 							<td><a href="{{route('delete', [$data->id])}}" class="btn btn-danger btn-sm">Delete</a></td>
 						</tr>
 						@endforeach
