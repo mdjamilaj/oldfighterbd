@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Slider;
+use File;
 
 class SliderCotroller extends Controller
 {
@@ -53,9 +54,7 @@ class SliderCotroller extends Controller
 
         if($request->hasFile('logo')) {
             $file_path = public_path().'/slider/'.$request->logo;
-            if(is_file($file_path)){
-                unlink($file_path);
-            }
+            if(File::exists($file_path)) unlink($file_path);
             $logo = $request->file('logo');
             $filename = time().'.'.$request->file('logo')->extension();  
             $request->file('logo')->move(public_path('slider'), $filename);
