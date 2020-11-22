@@ -152,7 +152,7 @@
 									/>
 									<p v-if="idCodeIdPasswordForm.security_code === ''" class="text-red-600">Security Code is required</p>
 
-									<a class="text-green-400 hover:text-blue-500" href="https://www.youtube.com/watch?v=dHRVPg84UhU" target="_blank">কীভাবে কোড পাবেন ?</a>
+									<a class="text-green-400 hover:text-blue-500" href="https://youtu.be/b_2Jr72quMg" target="_blank">কীভাবে কোড পাবেন ?</a>
 								</div>
 
 

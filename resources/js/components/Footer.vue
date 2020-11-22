@@ -6,8 +6,8 @@
 				<span class="text text-center lg:text-left xl:text-left"> All Rights Reserved Fighter.
 					<span>Developed by 
 						<span>
-							<a href="https://www.facebook.com/zakir.ahmed.7393264" target="_blank"> 
-								<span class="text-orange-600">Zakir ahmed</span>
+							<a href="https://teammahal.org" target="_blank"> 
+								<span class="text-orange-600">Team Mahal</span>
 							</a>
 						</span>
 					</span>
