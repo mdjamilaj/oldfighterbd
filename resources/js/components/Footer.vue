@@ -6,7 +6,7 @@
 				<span class="text text-center lg:text-left xl:text-left"> All Rights Reserved Fighter.
 					<span>Developed by 
 						<span>
-							<a href="https://teammahal.org" target="_blank"> 
+							<a href="https://teammahal.info" target="_blank"> 
 								<span class="text-orange-600">Team Mahal</span>
 							</a>
 						</span>
