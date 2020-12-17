@@ -41,6 +41,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('join/{id}', "MatchController@join");
 });
 
+
+Route::get('topcustomers', "Admin\SiteController@getTopcustomers");
 Route::get('sliders', "Admin\SiteController@getSlider");
 Route::get('notice', "Admin\NoticeController@show");
 Route::get('products', "Admin\ProductController@getProduct");

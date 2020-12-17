@@ -15,6 +15,8 @@ use App\Slider;
 use App\WalletInfo;
 use App\WithdrawInfo;
 
+use DB;
+
 
 use smasif\ShurjopayLaravelPackage\ShurjopayService;
 
@@ -301,6 +303,21 @@ class SiteController extends Controller
     {
         $paymentMethod = PaymentMethod::get();
         return response()->json($paymentMethod, 200);
+    }
+
+    public function getTopcustomers()
+    {
+        $data = Order::with('user')
+        ->groupBy('user_id')
+        ->where('status', 'complete')
+        ->select([
+            'user_id',
+            DB::raw('sum(sale_price) AS sum'),
+        ])
+        ->orderBy(DB::raw('sum(sale_price)'), 'DESC')
+        ->limit(20)
+        ->get();
+        return response()->json($data, 200);
     }
 
 }

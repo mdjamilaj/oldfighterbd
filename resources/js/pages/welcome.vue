@@ -102,6 +102,43 @@
 			</div>
 		</section>
 
+		<div class="container mx-auto">
+		<h2 class="text-4xl text-purple-700 font-bold text-center">
+			TOP 20 CUSTOMER
+		</h2>
+		<p class="top-p">SOME OF OUR SPACIAL CUSTOMER</p>
+		<carousel-3d
+			:disable3d="true"
+			:space="365"
+			v-if="cloaded"
+			:clickable="false"
+			:controls-visible="true"
+		>
+			<slide
+			v-for="(topcustomer, i) in topcustomers"
+			:index="i"
+			:key="i"
+			class="user-box"
+			>
+			<img v-if="topcustomer.user.file" :src="'/user/'+topcustomer.user.file" class="user-img" />
+			<img v-else class="user-img" src="/user/test.jpg"/>
+			<div class="user-content mt-2">
+				<h4 class="top">
+				TOP <span class="text-pink-500">{{ i + 1 }}</span> 
+				</h4>
+				<p><sub>({{ topcustomer.user.name }})</sub></p>
+				<h5 class="total">
+				COMPLETED ORDER
+				<span class="text-purple-700">{{ topcustomer.sum }}</span> BDT
+				</h5>
+				<h5 class="prize">
+				PRIZE WIN
+				<span class="text-purple-700 prize-number">{{ prizewin(topcustomer.sum) }}</span> TIMES
+				</h5>
+			</div>
+			</slide>
+		</carousel-3d>
+		</div>
 		
 	</div>
 </template>
@@ -116,20 +153,30 @@ export default {
 		return { title: this.$t("home") };
 	},
 	data: () => ({
-		title: "Kmf Gaming Mall",
+		title: "Fighter BD",
+		topcustomers: [],
 		products: [],
 		blogs: [],
 		sliders: [],
-		loaded:false
+		loaded:false,
+		cloaded:false
 	}),
 
 	methods: {
+		topCustomers(){
+			axios.get("/api/topcustomers").then(response => {
+				this.topcustomers = response.data;
+				this.cloaded=true;
+			});
+		},
+		prizewin(sum){
+			return Math.floor(sum/10000)
+		},
 		loadSliders() {
 			axios.get("/api/sliders").then(response => {
 				this.sliders = response.data;
 				this.loaded=true;
 			});
-
 		},
 		loadProducts() {
 			axios.get("/api/products").then(response => {
@@ -158,10 +205,49 @@ export default {
 		this.loadProducts();
 		this.loadBlogs();
 		this.loadSliders();
+		this.topCustomers();
 	}
 };
 </script>
 <style type="text/css">
+	.top-p{
+		text-align: center;
+		font-weight: 600;
+	}
+	.user-box{
+		background: white;
+		padding: 15px;
+		border: 1px solid #e2dede;
+		text-align: center;
+	}
+	.user-img {
+		width: 150px !important;
+		height: 150px !important;
+		border-radius: 50%;
+		border: 5px solid #f9f9f9;
+		margin: auto;
+		box-shadow: 0px 0px 2px 2px #c7c7c7;
+	}
+	.top{
+		font-size: 20px;
+		font-weight: 600;
+	}
+	.total{
+	font-size: 12px;
+	font-weight: 700;
+	} 
+	h5.prize {
+		font-size: 13px;
+		font-weight: 200;
+	}
+	.prize-number {
+		background: black;
+		width: 20px;
+		display: inline-block;
+		height: 20px;
+		border-radius: 50%;
+		color: white;
+	}
 	.carousel-3d-container {
 	  .carousel-3d-slide {
 	    padding: 20px;
