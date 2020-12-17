@@ -121,7 +121,7 @@
 			class="user-box"
 			>
 			<img v-if="topcustomer.user.file" :src="'/user/'+topcustomer.user.file" class="user-img" />
-			<img v-else class="user-img" src="/user/test.jpg"/>
+			<img v-else class="user-img" src="/img/test.jpg"/>
 			<div class="user-content mt-2">
 				<h4 class="top">
 				TOP <span class="text-pink-500">{{ i + 1 }}</span> 
