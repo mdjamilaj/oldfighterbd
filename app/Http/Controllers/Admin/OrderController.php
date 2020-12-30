@@ -98,6 +98,19 @@ class OrderController extends Controller
         return "success";
     }
 
+    public function commentupdate(Request $request)
+    {
+        $id = $request->input('id');
+        $comment = $request->input('comment');
+        $order = Order::find($id);
+        $order->comment=$comment;
+        $order->update();
+        // $this->sendmessage();
+        return "success";
+    }
+
+    
+
 
     public function checkPanddingOrder($user_id)
     {

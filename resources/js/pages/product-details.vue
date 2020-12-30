@@ -504,13 +504,6 @@
 				                    <span class="my-3 mt-3" style="font-family: auto;" v-html="selectedpaymentmethod.des">
 				                      	
 				                    </span>
-
-									<input
-										v-model="transaction_id"
-										class="appearance-none mt-2 block w-full bg-gray-200 text-gray-700 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-										placeholder="Reference  Code (যদি থাকে)"
-										type="number"
-									/>
 									<input
 										v-model="number"
 										class="appearance-none mt-2 block w-full bg-gray-200 text-gray-700 border border-gray-600 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -545,7 +538,6 @@ export default {
 			coupon_discount: 0,
 			ispandding: false,
 			number:'',
-			transaction_id: '',
 			paymentMethods: [],
 			paymentMethod: 1,
 			product: [],
@@ -737,7 +729,6 @@ export default {
 						email: email,
 						security_code: security_code,
 						sale_price: this.sale_amount,
-						transaction_id:this.transaction_id,
 						paymentMethod:this.paymentMethod,
 						number:this.number,
 

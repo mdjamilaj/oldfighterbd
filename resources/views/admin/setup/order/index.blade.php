@@ -105,6 +105,7 @@
 							<th  style="padding: 15px;margin:10px;" scope="col">SP</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">Amount</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">Time</th>
+							<th  style="padding: 15px;margin:10px;" scope="col">Comment</th>
 							<th  style="padding: 15px;margin:10px;" scope="col">Action</th>
 						</tr>
 					</thead>
@@ -171,13 +172,17 @@
 								<input type="number" id="{{ $data->id.'input' }}" placeholder="Enter Amount" value="{{ $data->refoundamount }}" style="width: 70px">
 								<button class="btn btn-sm btn-success"  onclick="walletUpdate({{ $data->id }},{{ $data->id }}+'input' )">Update</button>
 							</td>
-							@if($data->type=='IDCODE' || $data->type=='ID Code')
+							{{-- @if($data->type=='IDCODE' || $data->type=='ID Code')
 							<td style="padding: 15px;margin:10px;">
 								<input type="text" id="{{ $data->id.'input1' }}" value="{{ $data->password }}" placeholder="Enter Game Name" style="width: 110px">
 								<button class="btn btn-sm btn-success"  onclick="walletGameName({{ $data->id }},{{ $data->id }}+'input1' )">Update</button>
 							</td>
-							@endif
+							@endif --}}
 							<td style=""><?php echo date('dM, Y h:m:s A', strtotime( $data->created_at)); ?></td>
+							<td style="padding: 15px;margin:10px;">
+								<input type="text" id="{{ $data->id.'input2' }}" value="{{ $data->comment }}" placeholder="Enter Comment" style="width: 110px">
+								<button class="btn btn-sm btn-success"  onclick="commentupdate({{ $data->id }},{{ $data->id }}+'input2' )">Update</button>
+							</td>
 							<td><a href="{{route('delete', [$data->id])}}" class="btn btn-danger btn-sm">Delete</a></td>
 						</tr>
 						@endforeach
@@ -252,6 +257,46 @@
 					showConfirmButton: false,
 					timer: 1500
 				})
+	        }
+	    });
+	};
+
+
+	function commentupdate($id, $el_id) {
+	    var comment = document.getElementById($el_id).value;
+		var id = $id;
+		$.ajaxSetup({
+			headers: {
+	        	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	    	}
+		});
+	    $.ajax({
+	        type:"POST",
+	        url : "{{ route('commentupdate') }}",
+	        data : {
+				comment: comment,
+				id: id
+			},
+	        success : function(response) {
+				if(response == 'success')
+				{
+					Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Save Comment',
+					showConfirmButton: false,
+					timer: 1500
+					})
+					document.getElementById($el_id).value = comment;
+				}else{
+					Swal.fire({
+						position: 'top-end',
+						icon: 'error',
+						title: 'Not Save Comment',
+						showConfirmButton: false,
+						timer: 1500
+					})
+				}
 	        }
 	    });
 	};

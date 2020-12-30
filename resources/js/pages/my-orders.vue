@@ -12,8 +12,7 @@
                 <thead class="bg-gray-300">
                     <tr class="text-gray-800">
                         <th class="border border-gray-400 px-4 py-2">ORDER ID</th>
-                        <th class="border border-gray-400 px-4 py-2">PLAYER ID</th>
-                        <th class="border border-gray-400 px-4 py-2">PACKAGE ID</th>
+                        <th class="border border-gray-400 px-4 py-2">Comment</th>
                         <th class="border border-gray-400 px-4 py-2">PRODUCT NAME</th>
                         <th class="border border-gray-400 px-4 py-2">AMOUNT</th>
                         <th class="border border-gray-400 px-4 py-2">STATUS</th>
@@ -22,8 +21,7 @@
                 <tbody class="text-center">
                     <tr v-for="order in orders" :key="order.id" >
                         <td class="border border-gray-400 px-4 py-2">{{ order.id }}</td>
-                        <td class="border border-gray-400 px-4 py-2">{{ order.user_id }}</td>
-                        <td class="border border-gray-400 px-4 py-2">{{ order.package_id }}</td>
+                        <td class="border border-gray-400 px-4 py-2">{{ order.comment }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ order.name }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ formatPrice(order.sale_price) }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ order.status }}</td>

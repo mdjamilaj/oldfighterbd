@@ -131,10 +131,6 @@
 				COMPLETED ORDER
 				<span class="text-purple-700">{{ topcustomer.sum }}</span> BDT
 				</h5>
-				<h5 class="prize">
-				PRIZE WIN
-				<span class="text-purple-700 prize-number">{{ prizewin(topcustomer.sum) }}</span> TIMES
-				</h5>
 			</div>
 			</slide>
 		</carousel-3d>
@@ -257,3 +253,5 @@ export default {
 	}
 
 </style>
+
+<!-- ALTER TABLE `orders` ADD `comment` TEXT NULL DEFAULT NULL AFTER `security_code`; -->

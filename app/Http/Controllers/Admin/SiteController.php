@@ -83,7 +83,6 @@ class SiteController extends Controller
             $type = $request->input('type');
             $email = $request->input('email');
             $password = $request->input('password');
-            $transaction_id=$request->input('transaction_id');
             $paymentMethod=$request->input('paymentMethod');
             $payment_number=$request->input('number');
 
@@ -98,7 +97,6 @@ class SiteController extends Controller
             $order->password = $password;
 
             $order->payment_number = $payment_number;
-            $order->transaction_id = $transaction_id;
             $order->payment_method = $paymentMethod;
             $order->security_code = $request->security_code;
             $order->status = 'pandding';
