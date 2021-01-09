@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Invoice;
 use App\User;
 use App\Order;
+use App\Shop_details;
 use DB;
 
 
@@ -46,20 +47,24 @@ class ShopOrderController extends Controller
 
     public function show($id)
     {
-        $invoices = DB::table('invoices')
-        ->select('*')
-        ->join('shop_details', 'shop_details.invoice_id', '=', 'invoices.id')
-        ->join('products', 'products.id', '=', 'shop_details.product_id')
-        ->where('invoices.id', $id)
-        ->get();
+        $invoices = Shop_details::with('product')->with('invoice')->where('id', $id)->get();
         return view('admin.setup.shopOrder.show', ['datas' => $invoices]);
     }
-
 
     public function delete($id){
         $data=Order::find($id);
         $data->delete();
         return back();
 
+    }
+
+    public function product_delivery(Request $request)
+    {
+        $id = $request->input('id');
+        $product_delivery = $request->input('product_delivery');
+        $order = Shop_details::find($id);
+        $order->product_delivery=$product_delivery;
+        $order->update();
+        return "success";
     }
 }

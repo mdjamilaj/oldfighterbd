@@ -42,4 +42,14 @@ class UserController extends Controller
         }
         return view('admin.setup.user.index', ['datas' => $datas]);
     }
+
+    public function userWalletUpdate(Request $request)
+    {
+            $id = $request->input('id');
+            $wallet = $request->input('wallet');
+            $user = User::find($id);
+            $user->wallet=$wallet;
+            $user->update();
+            return "success";
+    }
 }

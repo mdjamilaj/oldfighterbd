@@ -49,6 +49,7 @@
                             <th scope="col">Total</th>
                             <th scope="col">Product Name</th>
 							<th scope="col">Product Description</th>
+							<th scope="col">Product Delivery</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -59,10 +60,14 @@
                             <td style="">{{$data->sale_price}}</td>
                             <td style="">{{$data->buy_price}}</td>
                             <td style="">{{$data->quantity}}</td>
-							<td style="">{{$data->sub_total}}</td>
-                            <td style="">{{$data->total}}</td>
-                            <td style="">{{$data->name}}</td>
-							<td style="">{!! \Illuminate\Support\Str::limit(strip_tags($data->description), 70, $end=' ......') !!}</td>
+							<td style="">{{$data->invoice->sub_total}}</td>
+                            <td style="">{{$data->invoice->total}}</td>
+                            <td style="">{{$data->product->name}}</td>
+							<td style="">{!! \Illuminate\Support\Str::limit(strip_tags($data->product->description), 70, $end=' ......') !!}</td>
+							<td style="padding: 15px;margin:10px;">
+								<input type="text" style="width:300px;" id="{{ $data->id.'input2' }}" value="{{ $data->product_delivery }}" placeholder="Enter Product" style="width: 110px">
+								<button class="btn btn-sm btn-success"  onclick="product_delivery_update({{ $data->id }},{{ $data->id }}+'input2' )">Update</button>
+							</td>
 						</tr>
 						@endforeach
 					</tbody>
@@ -73,4 +78,49 @@
 	</div>
 </div>
 
+<!-- /.container-fluid -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+	function product_delivery_update($id, $el_id) {
+	    var product_delivery = document.getElementById($el_id).value;
+		var id = $id;
+		$.ajaxSetup({
+			headers: {
+	        	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	    	}
+		});
+	    $.ajax({
+	        type:"POST",
+	        url : "{{ route('product_delivery') }}",
+	        data : {
+				product_delivery: product_delivery,
+				id: id
+			},
+	        success : function(response) {
+				if(response == 'success')
+				{
+					Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Save Product',
+					showConfirmButton: false,
+					timer: 1500
+					})
+					document.getElementById($el_id).value = product_delivery;
+				}else{
+					Swal.fire({
+						position: 'top-end',
+						icon: 'error',
+						title: 'Not Save Product',
+						showConfirmButton: false,
+						timer: 1500
+					})
+				}
+	        }
+	    });
+	};
+</script>
+
 @include('admin.layouts.footer')
+
+{{-- ALTER TABLE `shop_details` ADD `product_delivery` TEXT NOT NULL AFTER `quantity`; --}}

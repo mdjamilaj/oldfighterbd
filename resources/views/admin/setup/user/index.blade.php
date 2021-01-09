@@ -99,7 +99,10 @@
 							<td style="">{{$data->wallet}}</td>
 							<td style="">{{$data->name}}</td>
 							<td style="">{{$data->email}}</td>
-							<td style="">{{$data->wallet}}</td>
+							<td style="padding: 15px;margin:10px;">
+								<input type="number" id="{{ $data->id.'input' }}" placeholder="Enter Amount" value="{{ $data->wallet }}" style="width: 70px">
+								<button class="btn btn-sm btn-success"  onclick="walletUpdate({{ $data->id }},{{ $data->id }}+'input' )">Update</button>
+							</td>
 							<td style="">{{$data->earn_wallet}}</td>
 							<td style="">{{$data->phone}}</td>
 							<td style="">{{$data->address}}</td>
@@ -163,4 +166,43 @@
         }
     });
 };
+
+function walletUpdate($id, $el_id) {
+	    var wallet = document.getElementById($el_id).value;
+		var id = $id;
+		$.ajaxSetup({
+			headers: {
+	        	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	    	}
+		});
+	    $.ajax({
+	        type:"POST",
+	        url : "{{ route('userWalletUpdate') }}",
+	        data : {
+				wallet: wallet,
+				id: id
+			},
+	        success : function(response) {
+				if(response == 'success')
+				{
+					Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'User wallet updated',
+					showConfirmButton: false,
+					timer: 1500
+					})
+					document.getElementById($el_id).value = amount;
+				}else{
+					Swal.fire({
+						position: 'top-end',
+						icon: 'error',
+						title: 'User wallet not updated',
+						showConfirmButton: false,
+						timer: 1500
+					})
+				}
+	        }
+	    });
+	};
 </script>

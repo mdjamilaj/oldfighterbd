@@ -13,4 +13,14 @@ class Shop_details extends Model
         'sale_price',
         'invoice_id'
     ];
+
+    public function product()
+	{
+		return $this->belongsTo("App\Product");
+    }
+    
+    public function invoice()
+	{
+		return $this->belongsTo("App\Invoice");
+	}
 }

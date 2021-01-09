@@ -14,6 +14,7 @@
                     <th class="border border-gray-400 px-4 py-2">PRICE</th>
                     <th class="border border-gray-400 px-4 py-2">QUANTITY</th>
                     <th class="border border-gray-400 px-4 py-2">ORDER DATE TIME</th>
+                    <th class="border border-gray-400 px-4 py-2">PRODUCT</th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -25,10 +26,11 @@
                     <td class="border border-gray-400 px-4 py-2">{{ formatPrice(invoice.sale_price) }}</td>
                     <td class="border border-gray-400 px-4 py-2">{{ invoice.quantity }}</td>
                     <td class="border border-gray-400 px-4 py-2">{{ invoice.created_at }}</td>
+                    <td class="border border-gray-400 px-4 py-2">{{ invoice.product_delivery }}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-400 px-4 py-2 text-right font-bold" colspan="4">Total</td>
-                    <td class="border border-gray-400 px-4 py-2 text-left font-bold" colspan="3">{{ formatPrice(totalPrice()) }}</td>
+                    <td class="border border-gray-400 px-4 py-2 text-left font-bold" colspan="4">{{ formatPrice(totalPrice()) }}</td>
                 </tr>
             </tbody>
             </table>

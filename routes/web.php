@@ -60,7 +60,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::post('walletOrderUpdate','Admin\OrderController@walletUpdate')->name('walletOrderUpdate');
     Route::post('savegamename','Admin\OrderController@savegamename')->name('savegamename');
     Route::post('commentupdate','Admin\OrderController@commentupdate')->name('commentupdate');
-    
+    Route::post('product_delivery','Admin\ShopOrderController@product_delivery')->name('product_delivery');
 
     //Shop Order
     Route::get('shopOrder', "Admin\ShopOrderController@index")->name('shopOrder.index');
@@ -91,6 +91,9 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::post('match/playerPrizeUpdate', 'Admin\MatchController@playerPrizeUpdate')->name('playerPrizeUpdate');
 
     Route::get('users', "Auth\UserController@getUser")->name('users.index');
+
+    Route::post('userWalletUpdate', "Auth\UserController@userWalletUpdate")->name('userWalletUpdate');
+    
 
     Route::post('all_pandding_cancel', "Admin\TransactionInfoController@allCancel")->name('all_pandding_cancel');
 });
