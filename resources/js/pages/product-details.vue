@@ -63,7 +63,7 @@
 											@change="onChange($event)"
 											v-model="idCodeIdPasswordForm.type"
 										>
-										
+
 											<option value="facebook">Facebook</option>
 											<option value="gmail">Gmail</option>
 										</select>
@@ -151,8 +151,7 @@
 										v-model="idCodeIdPasswordForm.security_code"
 									/>
 									<p v-if="idCodeIdPasswordForm.security_code === ''" class="text-red-600">Security Code is required</p>
-
-									<a class="text-green-400 hover:text-blue-500" href="https://youtu.be/b_2Jr72quMg" target="_blank">কীভাবে কোড পাবেন ?</a>
+									<a class="text-green-400 hover:text-blue-500" href="https://www.youtube.com/watch?v=fxRCP2pkMPo" target="_blank">কীভাবে কোড পাবেন ?</a>
 								</div>
 
 
@@ -174,7 +173,7 @@
 									<p v-if="coupon_code === ''" class="text-red-600 ml-3">Coupon Code is required</p>
 									<p v-else-if="coupon_code !== 'fighter869'" class="text-red-600 ml-3">Coupon Code is invalid</p>
 									<p v-else class="text-green-600 ml-3">Valid Code</p>
-									
+
 								</div> -->
 							</div>
 						</form>
@@ -260,7 +259,7 @@
 					</div>
 					<div
 						class="flex flex-wrap mt-4 justify-center"
-					>	
+					>
 						<div class="text-center" v-for="(game) in packages" :key="game.id">
 					  		<div class="m-1">
 					  			<label :for="game.id" class="mb-0 w-40 list-group-item py-3 d-block"  style="font-size: 11px;position: relative;    overflow: hidden;">
@@ -269,8 +268,8 @@
 									<span class="text-xs">{{ game.name }}</span>
 						  		</label>
 						  	</div>
-					  	</div> 
-					  	
+					  	</div>
+
 					</div>
 				</div>
 				<div
@@ -502,7 +501,7 @@
 								</div>
 								<div v-if="selectedpaymentmethod!=[] && selectedpaymentmethod.id!=0  && selectedpaymentmethod.id!=100000">
 				                    <span class="my-3 mt-3" style="font-family: auto;" v-html="selectedpaymentmethod.des">
-				                      	
+
 				                    </span>
 									<input
 										v-model="number"
@@ -656,7 +655,7 @@ export default {
 			if(this.showElement!=1){
 				axios.get(`/api/gamename/${this.idCodeIdPasswordForm.email}`).then(response => {
 					this.gamename=response.data.password
-					
+
 				});
 			}
 		},
@@ -772,7 +771,7 @@ export default {
 		},
 		// orderWithTransactionId(){
 
-			
+
 		// 	if(this.showElement == 0){
 		// 		var password = "ID Code";
 		// 		var type = "ID Code";
@@ -826,7 +825,7 @@ export default {
 		// 			this.transactionmodal = false;
 		// 		});
 		// 	}
-			
+
 		// 	// else if(this.selectedpaymentmethod.id!=0 && (this.number == '' || this.transaction_id == ''))
 		// 	// {
 		// 	// 	Swal.fire({
@@ -839,8 +838,8 @@ export default {
 		// 	// 		this.transactionmodal = true;
 		// 	// 	});
 		// 	// }
-			
-			
+
+
 		// 	else{
 
 
@@ -890,7 +889,7 @@ export default {
 					this.ispandding = response.data;
 				});
 			}
-		},	
+		},
 	},
 	mounted() {
 		this.fetchProduct();
@@ -917,7 +916,7 @@ export default {
     background: #348e1652;
 	border: 2px solid gray;
 }
-.bKash-error::before { 
+.bKash-error::before {
   content: "\26A0";
   padding: 5px;
   margin-right: 5px;

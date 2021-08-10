@@ -66,6 +66,12 @@
 							<td style="display: -webkit-inline-box;">
 								<a href="{{ route('paymentMethodEdit',[$data->id]) }}"
 								class="btn btn-success btn-sm">Edit</a>
+                <form method="get" action="{{ route('paymentMethodDelete',[$data->id]) }}">
+									{{ csrf_field() }}
+									{{ method_field('get') }}
+									<input style="margin-left: 10px;" type="submit" id="deletebtn"
+										class="btn btn-danger btn-sm" value="Delete">
+								</form>
 							</td>
 						</tr>
 						@endforeach

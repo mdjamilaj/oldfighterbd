@@ -19,7 +19,7 @@ class TransactionInfoController extends Controller
         if (empty($user_id) && empty($permentnumber) && empty($status)) {
             $datas = WalletInfo::orderBy('id', 'DESC')->paginate(10);
         }else{
-            $datas = WalletInfo::orderBy('id', 'DESC')->where('user_id', $user_id)->orWhere('status', $status)->orWhere('paymentNumber', $permentnumber)->paginate(10);
+            $datas = WalletInfo::with('payment_method')->orderBy('id', 'DESC')->where('user_id', $user_id)->orWhere('status', $status)->orWhere('paymentNumber', $permentnumber)->paginate(10);
         }
         return view('admin.setup.transactionInfo.index', ['datas' => $datas]);
     }
@@ -52,7 +52,7 @@ class TransactionInfoController extends Controller
 
     public function getTransaction($id)
     {
-        $transactionInfo = WalletInfo::orderBy('id', 'DESC')->where('user_id', $id)->get();
+        $transactionInfo = WalletInfo::with('payment_method')->orderBy('id', 'DESC')->where('user_id', $id)->get();
         if($transactionInfo)
             return response()->json($transactionInfo, 200);
         else

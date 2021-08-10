@@ -93,7 +93,7 @@
 					<thead class="thead-light">
 						<tr>
 							<th scope="col">#</th>
-							
+
 							<th scope="col">User ID</th>
 							<th scope="col">Payment Method</th>
 							<th scope="col">Payment Number</th>
@@ -108,10 +108,15 @@
 							<td scope="row">{{ $key }}</td>
 							<td style="">{{$data->user_id}}</td>
 							<td style="">
-								@if($data->paymentMethod == 1){{ 'bKash' }}
+								@if ($data->payment_method)
+                  {{ $data->payment_method->name }}
+                @else
+                @if($data->paymentMethod == 1){{ 'bKash' }}
 								@elseif($data->paymentMethod == 2){{ 'Nagad' }}
 								@elseif($data->paymentMethod == 2){{ 'Rocket' }}
 								@endif
+
+                @endif
 							</td>
 							<td style="">{{$data->paymentNumber}}</td>
 							<td style="">{{$data->amount}}</td>
@@ -166,7 +171,7 @@
     var status = $status;
 	var id = $id;
 	console.log(status);
-	
+
 	$.ajaxSetup({
 		headers: {
         	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

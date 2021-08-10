@@ -19,3 +19,8 @@ password= passwordAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA12222222222222222222222222DS
 database=nshop
 
 ssh://root@198.251.69.22/var/repo/site.git
+
+
+
+ip:70.35.198.43
+password:88FY%Rqo6%

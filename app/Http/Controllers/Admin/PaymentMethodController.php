@@ -29,18 +29,17 @@ class PaymentMethodController extends Controller
             ]);
         $paymentMethod = new paymentMethod;
         $paymentMethod->name = $request->input('name');
+        $paymentMethod->description = $request->input('description');
         $paymentMethod->discount = $request->input('discount');
         $paymentMethod->currency = $request->input('currency');
         $paymentMethod->number = $request->input('number');
             if($request->hasFile('logo')) {
             $logo = $request->file('logo');
-            $fileName = time().'.'.$request->file('logo')->extension();  
+            $fileName = time().'.'.$request->file('logo')->extension();
             $request->file('logo')->move(public_path('paymentMethod'), $fileName);
 
             $paymentMethod->logo = $fileName;
             $paymentMethod->save();
-
-            $request->logo->move(public_path('paymentMethod'), $fileName);
             return back()
             ->with('success','Payment Method Create Successfully.')
             ->with('file', $fileName);
@@ -52,7 +51,7 @@ class PaymentMethodController extends Controller
         //
     }
 
-    
+
     public function edit($id)
     {
         $paymentMethod = paymentMethod::find($id);
@@ -65,22 +64,23 @@ class PaymentMethodController extends Controller
             'logo' => 'mimes:jpeg,png,jpg,txt,xlx,xls,pdf|max:2048'
         ]);
         $paymentMethod = paymentMethod::find($id);
+        $description = $request->input('description');
         $name = $request->input('name');
         $discount = $request->input('discount');
         $currency = $request->input('currency');
         $number = $request->input('number');
-        if($request->file('logo') != ''){        
+        if($request->file('logo') != ''){
             if($request->hasFile('logo')) {
                 $file_path = public_path().'/paymentMethod/'.$request->input('oldlogo');;
                 if(File::exists($file_path)) unlink($file_path);
                 $logo = $request->file('logo');
-                $filename = time().'.'.$request->file('logo')->extension();  
+                $filename = time().'.'.$request->file('logo')->extension();
                 $request->file('logo')->move(public_path('paymentMethod'), $filename);
             }
        }else{
             $filename = $request->input('oldlogo');
        }
-       $paymentMethod->update(['logo' => $filename, 'name' => $name,'discount' => $discount,'currency' => $currency,'number' => $number]);
+       $paymentMethod->update(['logo' => $filename, 'description' => $description, 'name' => $name,'discount' => $discount,'currency' => $currency,'number' => $number]);
        return back()
             ->with('success','Payment Method Update Successfully.')
             ->with('file', $filename);
